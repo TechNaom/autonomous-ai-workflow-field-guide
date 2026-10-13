@@ -11,7 +11,7 @@
 | Billed spend, first month to date | $0.65 ($4.33 at list price), mostly from the optional judge used 6–9 October |
 | Run cost estimate, full mode vs light mode | $0.04–$0.41 per run vs about $0.004 per run (ledger estimate, placeholder pricing) |
 | Automated tests | About 750 |
-| Seeded fact-check eval | 25 cases; CI enforces at least 19 of 20 caught with no false rejects |
+| Seeded fact-check eval | 25 cases and scoring built; CI replay runs on every PR; real model recordings pending, so no model catch rate is claimed yet |
 
 ## Timeline of incidents and fixes
 

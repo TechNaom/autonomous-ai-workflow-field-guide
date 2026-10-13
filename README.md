@@ -15,7 +15,7 @@ This guide documents the strategies and architecture behind a system that has ru
 | **Infrastructure** | Serverless: Cloudflare Workers cron, GitHub Actions, Neon serverless Postgres, Langfuse (OpenTelemetry) |
 | **Budget** | $10/month and $1/day hard caps, checked before every model call, failing closed |
 | **Actual spend** | $0.65 billed in the first month to date (as of 2026-10-12), mostly from a quality-judge experiment later switched off |
-| **Quality engineering** | About 750 automated tests; a seeded fact-check eval (20 planted errors, 5 clean controls, 95% catch-rate target) |
+| **Quality engineering** | About 750 automated tests; a seeded fact-check eval harness (20 planted errors, 5 clean controls, 95% catch-rate target; real model recordings pending) |
 | **Safety and governance** | Shadow mode by default, a kill switch, idempotent publishing, prompt-injection escaping, secret scanning, decision records and a full audit trail |
 
 ## Architecture

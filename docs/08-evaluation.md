@@ -41,6 +41,8 @@ A planted error is caught only if **all three** hold:
 
 Rule 3 stops lucky catches: a draft rejected for an unrelated reason doesn't inflate the score.
 
+> **Status (2026-10-13):** the harness, the 25 cases, the scoring rules and the CI replay are built. The seeded cases' recordings are still **synthetic** (hand-written answers that exercise the pipeline), so the CI result proves the scoring code, not the model's catch rate. Recording real judge answers is the next step. The golden-post recordings below *are* from a real model.
+
 ## Running it in CI without model calls
 
 ```mermaid
@@ -58,7 +60,7 @@ flowchart LR
     GUARD -- yes --> FAILX
 ```
 
-- **Layer A (every pull request, free, deterministic):** recorded judge answers are replayed through the real parsing, evidence checks, deterministic rules and scoring. Any code change that weakens the checker blocks the merge.
+- **Layer A (every pull request, free, deterministic):** recorded judge answers (synthetic today, see the status note) are replayed through the real parsing, evidence checks, deterministic rules and scoring. Any code change that weakens the checker blocks the merge.
 - **Regression guard:** each recording stores the prompt version, prompt hash and model id. Changing the judge prompt or model fails CI until a fresh live run passes and its recordings are committed.
 - **Layer B (manual, live):** runs the real model and refreshes the recordings. Designed; not yet wired into a workflow.
 - **Backstop report:** the eval also reports how much the code-only rules catch with no model at all, which shows what the model actually adds.
@@ -77,6 +79,7 @@ In production, the strict gate caught real embellishments on four consecutive da
 
 | Gap | Plan |
 |---|---|
+| Seeded-case recordings are synthetic | Record real judge answers with the live recorder, then report the real catch rate |
 | The eval covers the optional judge, not the default light mode | Replay real light-mode drafts through a narrow fact critic (numbers, names, attributions only) |
 | No measure of de-duplication or coverage | Label a few weeks of collected news: repeats missed, follow-ups wrongly dropped, major launches missed |
 | No judge-human agreement figure | Compare judge verdicts with the owner's own ratings (Cohen's kappa) |
